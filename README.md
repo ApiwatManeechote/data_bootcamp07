@@ -1,2 +1,2 @@
-# data_bootcamp07
-All my project in the bootcamp
+# Hi, everyone.
+These are my personal projects I am willing to share my coding skills.
