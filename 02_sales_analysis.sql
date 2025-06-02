@@ -13,7 +13,7 @@ ORDER BY total_revenue DESC;
 SELECT
     g.Name AS genre,
     SUM(il.UnitPrice * il.Quantity) AS total_revenue
-FROM invoiceline il
+FROM invoicelines il
 JOIN tracks t ON il.TrackId = t.TrackId
 JOIN genres g ON t.GenreId = g.GenreId
 GROUP BY g.Name
@@ -54,7 +54,7 @@ LIMIT 10;
 SELECT
     ar.Name AS artist_name,
     SUM(il.UnitPrice * il.Quantity) AS total_sales
-FROM invoiceline il
+FROM invoicelines il
 JOIN tracks t ON il.TrackId = t.TrackId
 JOIN albums al ON t.AlbumId = al.AlbumId
 JOIN artists ar ON al.ArtistId = ar.ArtistId
@@ -65,19 +65,15 @@ LIMIT 10;
 -- Or we can use subquery to combine data together like this.
 SELECT
     ar.Name AS artist_name,
-    (
-        SELECT COUNT(t.TrackId)
+    (SELECT COUNT(t.TrackId)
         FROM albums al
         JOIN tracks t ON al.AlbumId = t.AlbumId
-        WHERE al.ArtistId = ar.ArtistId
-    ) AS track_count,
-    (
-        SELECT SUM(il.UnitPrice * il.Quantity)
+        WHERE al.ArtistId = ar.ArtistId) AS track_count,
+    (SELECT SUM(il.UnitPrice * il.Quantity)
         FROM albums al
         JOIN tracks t ON al.AlbumId = t.AlbumId
-        JOIN invoiceline il ON il.TrackId = t.TrackId
-        WHERE al.ArtistId = ar.ArtistId
-    ) AS total_sales
+        JOIN invoicelines il ON il.TrackId = t.TrackId
+        WHERE al.ArtistId = ar.ArtistId) AS total_sales
 FROM artists ar
 ORDER BY total_sales DESC
 LIMIT 10;
