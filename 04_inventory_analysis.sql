@@ -17,7 +17,7 @@ ORDER BY avg_length_ms DESC;
 SELECT
     m.Name AS media_type,
     SUM(il.UnitPrice * il.Quantity) AS total_sales
-FROM invoiceline il
+FROM invoicelines il
 JOIN tracks t ON il.TrackId = t.TrackId
 JOIN media_types m ON t.MediaTypeId = m.MediaTypeId
 GROUP BY m.Name
