@@ -1,4 +1,4 @@
-# Chinook Digital Media Store: Sales & Customer Insights
+# Chinook Digital Media Store: Sales & Customer Insights (1)
 
 ## SQL Project Overview
 
